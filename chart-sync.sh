@@ -55,6 +55,8 @@ done < desiredSHAs.csv
 rm -rf ${CHARTS_PATH}
 mv temp-charts ${CHARTS_PATH}
 mv temp-latestSHAs.csv latestSHAs.csv
+git status --porcelain
+git status
 
 if [[ `git status --porcelain` ]]; then
   echo "There are changes to the charts. Updating index"

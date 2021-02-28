@@ -1,5 +1,5 @@
 name: learn-github-actions
-on: [push]
+on: workflow_dispatch
 jobs:
   chart-update:
     runs-on: ubuntu-latest

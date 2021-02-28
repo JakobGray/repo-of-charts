@@ -52,8 +52,8 @@ do
   echo -en "$url,$chartpath,$newsha\n" >> temp-latestSHAs.csv
 done < desiredSHAs.csv
 
-rm -rf ${CHARTS_PATH}
 cp "${CHARTS_PATH}/index.yaml" temp-charts/index.yaml
+rm -rf ${CHARTS_PATH}
 mv temp-charts ${CHARTS_PATH}
 mv temp-latestSHAs.csv latestSHAs.csv
 git status --porcelain

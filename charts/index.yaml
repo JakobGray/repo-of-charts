@@ -3,20 +3,20 @@ entries:
   hello-go:
   - apiVersion: v2
     appVersion: latest
-    created: "2021-02-27T22:15:37.275629-05:00"
+    created: "2021-02-28T06:59:17.497862239Z"
     description: A Helm chart for Kubernetes
-    digest: eb82680d15638fa5e11f0bb56a7309fb657e4d5c4c754f1c82a86f6318277312
+    digest: 94c689c2c0900d8b4c1cb5c15f6184833db71ac252b2d3bdec9fb34fcce9e885
     name: hello-go
     type: application
     urls:
-    - http://multiclusterhub-repo:3000/charts/hello-go-2.3.0.tgz
-    version: 2.3.0
+    - http://multiclusterhub-repo:3000/charts/hello-go-2.0.0.tgz
+    version: 2.0.0
   traefik:
   - apiVersion: v2
-    appVersion: 2.3.0
-    created: "2021-02-27T22:15:37.277777-05:00"
+    appVersion: 2.4.5
+    created: "2021-02-28T06:59:17.499651658Z"
     description: A Traefik based Kubernetes ingress controller
-    digest: c6dc258664b6caed388b20149cd1d984d34ea6311cc874ca53872a342764140b
+    digest: 4dc61699abe2de86445b755156aef745a2b8f390097d0f88ac91de332dfbf4fa
     home: https://traefik.io/
     icon: https://raw.githubusercontent.com/traefik/traefik/v2.3/docs/content/assets/img/traefik.logo.png
     keywords:
@@ -32,8 +32,9 @@ entries:
     name: traefik
     sources:
     - https://github.com/traefik/traefik
+    - https://github.com/traefik/traefik-helm-chart
     type: application
     urls:
-    - http://multiclusterhub-repo:3000/charts/traefik-2.3.0.tgz
-    version: 2.3.0
-generated: "2021-02-27T22:15:37.274876-05:00"
+    - http://multiclusterhub-repo:3000/charts/traefik-2.0.0.tgz
+    version: 2.0.0
+generated: "2021-02-28T06:59:17.497232132Z"

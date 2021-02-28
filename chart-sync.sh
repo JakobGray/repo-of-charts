@@ -54,6 +54,13 @@ done < desiredSHAs.csv
 
 rm -rf ${CHARTS_PATH}
 mv temp-charts ${CHARTS_PATH}
-helm repo index --url http://multiclusterhub-repo:3000/charts ${CHARTS_PATH}
 mv temp-latestSHAs.csv latestSHAs.csv
+
+if [[ `git status --porcelain` ]]; then
+  echo "There are changes to the charts. Updating index"
+  helm repo index --url http://multiclusterhub-repo:3000/charts ${CHARTS_PATH}
+else
+  echo "No changes. Not updating index."
+fi
+
 git status

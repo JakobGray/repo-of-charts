@@ -1,2 +1,3 @@
 https://github.com/JakobGray/hello-go-chart,hello-go,master
 https://github.com/traefik/traefik-helm-chart,traefik,master
+https://github.com/jetstack/cert-manager,deploy/charts/cert-manager,master

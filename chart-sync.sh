@@ -15,7 +15,7 @@ do
   if [ "$latestsha" == "$shaorbranch" ] && [ -f "charts/${filename}" ]; then
     echo $"Latest SHA matches desired SHA and file exists. Copying to temp-charts."
     cp "charts/${filename}" "temp-charts/${filename}"
-    echo -en "$url,$chartpath,$newsha\n" >> temp-latestSHAs.csv
+    echo -en "$url,$chartpath,$shaorbranch\n" >> temp-latestSHAs.csv
     continue
   fi
 

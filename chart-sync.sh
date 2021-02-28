@@ -56,3 +56,4 @@ rm -rf ${CHARTS_PATH}
 mv temp-charts ${CHARTS_PATH}
 helm repo index --url http://multiclusterhub-repo:3000/charts ${CHARTS_PATH}
 mv temp-latestSHAs.csv latestSHAs.csv
+git status

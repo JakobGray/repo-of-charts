@@ -27,12 +27,12 @@ jobs:
           commit-message: Update charts and index
           committer: GitHub <noreply@github.com>
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
-          branch: "chart-update-${GITHUB_REF##*/}"
+          branch: chart-update-${{ GITHUB_REF##*/ }}
           delete-branch: true
           title: 'Update charts'
           body: |
             Changelog:
-            ${{ steps.update_charts.outputs.charts_changed }}"
+            ${{ steps.update_charts.outputs.charts_changed }}
           labels: |
             chart update
 

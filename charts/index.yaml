@@ -3,9 +3,9 @@ entries:
   hello-go:
   - apiVersion: v2
     appVersion: latest
-    created: "2021-02-28T03:26:10.819804297Z"
+    created: "2021-02-28T06:43:34.195302937Z"
     description: A Helm chart for Kubernetes
-    digest: eb82680d15638fa5e11f0bb56a7309fb657e4d5c4c754f1c82a86f6318277312
+    digest: 39f49f48b711daf9419db117b96b6fa126cb8c33187b7ec41776ef1952b1c05a
     name: hello-go
     type: application
     urls:
@@ -14,7 +14,7 @@ entries:
   traefik:
   - apiVersion: v2
     appVersion: 2.4.5
-    created: "2021-02-28T03:26:10.821836508Z"
+    created: "2021-02-28T06:43:34.197356636Z"
     description: A Traefik based Kubernetes ingress controller
     digest: 6c41751d548afded5c569dccf1833e6c3b01899df005f29c5f117c5510fef318
     home: https://traefik.io/
@@ -37,4 +37,4 @@ entries:
     urls:
     - http://multiclusterhub-repo:3000/charts/traefik-2.3.0.tgz
     version: 2.3.0
-generated: "2021-02-28T03:26:10.818998792Z"
+generated: "2021-02-28T06:43:34.194577437Z"

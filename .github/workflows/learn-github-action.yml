@@ -34,7 +34,7 @@ jobs:
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           branch: chart-update-${{ env.branch_name }}
           delete-branch: true
-          title: 'Update charts'
+          title: "Update charts in the ${{ env.branch_name }} branch"
           body: |
             Changelog:
             ${{ env.charts_changed }}

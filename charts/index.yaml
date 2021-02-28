@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  hello-go:
+  - apiVersion: v2
+    appVersion: latest
+    created: "2021-02-27T20:19:59.638541-05:00"
+    description: A Helm chart for Kubernetes
+    digest: eb82680d15638fa5e11f0bb56a7309fb657e4d5c4c754f1c82a86f6318277312
+    name: hello-go
+    type: application
+    urls:
+    - http://multiclusterhub-repo:3000/charts/hello-go-2.3.0.tgz
+    version: 2.3.0
+generated: "2021-02-27T20:19:59.637762-05:00"

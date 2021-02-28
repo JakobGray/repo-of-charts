@@ -1,30 +1,40 @@
-name: learn-github-actions
-on: [push]
+name: Update Helm Charts
+on: workflow_dispatch
 jobs:
   chart-update:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
-      - name: Configure Git
-        run: |
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-
       - name: Install Helm
         uses: azure/setup-helm@v1
         with:
           version: v3.4.0
 
-      - name: Check helm version
+      - name: Update charts
+        id: update_charts
         run: |
           helm version
           git rev-parse HEAD
           bash chart-sync.sh
+          echo "##[set-output name=version;]$(npm run package-version --silent)"
+          echo "::set-output name=charts_changed::$(git status charts --porcelain | sed s/^...//)"
 
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v3
+        with:
+          commit-message: Update charts and index
+          committer: GitHub <noreply@github.com>
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          branch: "chart-update-${GITHUB_REF##*/}"
+          delete-branch: true
+          title: 'Update charts'
+          body: |
+            Changelog:
+            ${{ steps.update_charts.outputs.charts_changed }}"
+          labels: |
+            chart update
 
       - name: Check outputs
         run: |

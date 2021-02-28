@@ -53,10 +53,10 @@ do
 done < desiredSHAs.csv
 
 rm -rf ${CHARTS_PATH}
+cp "${CHARTS_PATH}/index.yaml" temp-charts/index.yaml
 mv temp-charts ${CHARTS_PATH}
 mv temp-latestSHAs.csv latestSHAs.csv
 git status --porcelain
-git status
 
 if [[ `git status --porcelain` ]]; then
   echo "There are changes to the charts. Updating index"

@@ -10,9 +10,6 @@ jobs:
         uses: azure/setup-helm@v1
         with:
           version: v3.4.0
-      
-      - name: Set environment variable
-        run: echo "branch_name=${GITHUB_REF##*/}" >> $GITHUB_ENV
 
       - name: Update charts
         id: update_charts
@@ -20,8 +17,13 @@ jobs:
           helm version
           git rev-parse HEAD
           bash chart-sync.sh
-          echo "##[set-output name=version;]$(npm run package-version --silent)"
-          echo "::set-output name=charts_changed::$(git status charts --porcelain | sed s/^...//)"
+
+      - name: Set environment variables
+        run: |
+          echo "branch_name=${GITHUB_REF##*/}" >> $GITHUB_ENV
+          echo 'charts_changed<<EOF' >> $GITHUB_ENV
+          git status charts --porcelain >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
 
       - name: Create Pull Request
         id: cpr
@@ -35,7 +37,7 @@ jobs:
           title: 'Update charts'
           body: |
             Changelog:
-            ${{ steps.update_charts.outputs.charts_changed }}
+            ${{ env.charts_changed }}
           labels: |
             chart update
 

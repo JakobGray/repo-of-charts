@@ -1,4 +1,4 @@
-CHARTS_PATH="charts/"
+CHARTS_PATH="charts"
 CHART_VERSION="$(cat CHART_VERSION)"
 echo "Setting chart version as ${CHART_VERSION}"
 # rm charts/* #rm all charts first, in case chart versions are changed

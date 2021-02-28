@@ -1,9 +1,31 @@
 apiVersion: v1
 entries:
+  cert-manager:
+  - apiVersion: v1
+    appVersion: v0.1.0
+    created: "2021-02-28T07:11:24.005479625Z"
+    description: A Helm chart for cert-manager
+    digest: 71416fa5537f56177e72263fc51ab855ab5ced1dda6aae3030ff5d44c11a83b3
+    home: https://github.com/jetstack/cert-manager
+    icon: https://raw.githubusercontent.com/jetstack/cert-manager/master/logo/logo.png
+    keywords:
+    - cert-manager
+    - kube-lego
+    - letsencrypt
+    - tls
+    maintainers:
+    - email: james@jetstack.io
+      name: munnerz
+    name: cert-manager
+    sources:
+    - https://github.com/jetstack/cert-manager
+    urls:
+    - http://multiclusterhub-repo:3000/charts/cert-manager-2.3.0.tgz
+    version: 2.3.0
   hello-go:
   - apiVersion: v2
     appVersion: latest
-    created: "2021-02-28T06:43:34.195302937Z"
+    created: "2021-02-28T07:11:24.006001223Z"
     description: A Helm chart for Kubernetes
     digest: 39f49f48b711daf9419db117b96b6fa126cb8c33187b7ec41776ef1952b1c05a
     name: hello-go
@@ -14,7 +36,7 @@ entries:
   traefik:
   - apiVersion: v2
     appVersion: 2.4.5
-    created: "2021-02-28T06:43:34.197356636Z"
+    created: "2021-02-28T07:11:24.007846816Z"
     description: A Traefik based Kubernetes ingress controller
     digest: 6c41751d548afded5c569dccf1833e6c3b01899df005f29c5f117c5510fef318
     home: https://traefik.io/
@@ -37,4 +59,4 @@ entries:
     urls:
     - http://multiclusterhub-repo:3000/charts/traefik-2.3.0.tgz
     version: 2.3.0
-generated: "2021-02-28T06:43:34.194577437Z"
+generated: "2021-02-28T07:11:24.003549732Z"

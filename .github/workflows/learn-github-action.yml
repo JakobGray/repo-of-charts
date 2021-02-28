@@ -10,6 +10,9 @@ jobs:
         uses: azure/setup-helm@v1
         with:
           version: v3.4.0
+      
+      - name: Set environment variable
+        run: echo "branch_name=${GITHUB_REF##*/}" >> $GITHUB_ENV
 
       - name: Update charts
         id: update_charts
@@ -27,7 +30,7 @@ jobs:
           commit-message: Update charts and index
           committer: GitHub <noreply@github.com>
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
-          branch: chart-update-${{ GITHUB_REF##*/ }}
+          branch: chart-update-${{ env.branch_name }}
           delete-branch: true
           title: 'Update charts'
           body: |

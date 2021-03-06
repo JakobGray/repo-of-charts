@@ -1,7 +1,7 @@
 CHARTS_PATH="charts"
 CHART_VERSION="$(cat CHART_VERSION)"
 FORMAT=sha
-echo "Setting chart version as ${CHART_VERSION}"
+echo "---Setting chart version as ${CHART_VERSION}---"
 
 # temp-charts will hold the charts until it is ready to replace the current charts dir
 mkdir temp-charts
@@ -11,11 +11,11 @@ do
 
   if [[ $shaorbranch == master ]] || [[ $shaorbranch == release* ]];then
     # This is a branch
-    printf "Github URL: $url\nPath to chart: $chartpath\nDesired branch: $shaorbranch\n"
+    printf "\tGithub URL: $url\n\tPath to chart: $chartpath\n\tDesired branch: $shaorbranch\n"
     FORMAT=branch
   else
     # Must be a sha
-    printf "Github URL: $url\nPath to chart: $chartpath\nDesired sha: $shaorbranch\n"
+    printf "\tGithub URL: $url\n\tPath to chart: $chartpath\n\tDesired sha: $shaorbranch\n"
     FORMAT=sha
   fi
 
@@ -40,7 +40,7 @@ do
     githubTrimmedURL=${httpsTrimmedURL#*/}
     echo $githubTrimmedURL
 
-    lastsha=$(curl -s -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${githubTrimmedURL}/git/refs/heads/master | jq -r '.object.sha')
+    lastsha=$(curl -s -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${githubTrimmedURL}/git/refs/heads/${shaorbranch} | jq -r '.object.sha')
     if [ "$currentsha" == "$lastsha" ] && [ -f "charts/${filename}" ]; then
       # We already have this sha so no need to repackage
       echo "Latest SHA matches SHA in branch ${shaorbranch} and file chart version exists."
@@ -64,22 +64,6 @@ do
   lastsha=$(git rev-parse HEAD)
   echo "Most recent sha is ${lastsha}"
 
-  # if [ "$currentsha" == "$lastsha" ]; then
-  #   echo "Latest SHA matches SHA in branch ${shaorbranch}"
-  # fi
-  # if [ -f "../../charts/${filename}" ]; then
-  #   echo "File exists in charts folder"
-  # fi
-
-  # if [ "$currentsha" == "$lastsha" ] && [ -f "../../charts/${filename}" ]; then
-  #   # We already have this sha so no need to repackage
-  #   echo "Latest SHA matches SHA in branch ${shaorbranch} and file chart version exists."
-  #   cp "../../charts/${filename}" "../../temp-charts/${filename}"
-  # else
-  #   echo "Either shas don't match or the chart version has changed. Repackaging helm chart to temp-charts."
-  #   helm package $chartpath --version="${CHART_VERSION}" --destination="../../temp-charts"
-  # fi
-
   helm package $chartpath --version="${CHART_VERSION}" --destination="../../temp-charts"
 
   cd ../..
@@ -92,12 +76,3 @@ rm -rf ${CHARTS_PATH}
 mv temp-charts ${CHARTS_PATH}
 mv temp-currentSHAs.csv currentSHAs.csv
 git status --porcelain
-
-# if [[ `git status ${CHARTS_PATH} --porcelain` ]]; then
-#   echo "There are changes to the charts. Updating index"
-#   helm repo index --url http://multiclusterhub-repo:3000/charts ${CHARTS_PATH}
-# else
-#   echo "No changes. Not updating index."
-# fi
-
-git status --porcelain=v2
